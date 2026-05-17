@@ -1,0 +1,11 @@
+[package]
+name = "mane-engine"
+version = "0.1.0"
+description = "Mac-side wrapper around Brave's adblock-rust engine"
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+
+[dependencies]
+adblock = "0.12.5"

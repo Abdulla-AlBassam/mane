@@ -1,0 +1,25 @@
+# Rust
+target/
+
+# Node (extensions, later)
+node_modules/
+npm-debug.log*
+
+# macOS
+.DS_Store
+
+# Xcode (later)
+xcuserdata/
+*.xcuserstate
+DerivedData/
+build/
+
+# Downloaded filter lists, not committed
+filterlists/*.txt
+filterlists/*.json
+!filterlists/.gitkeep
+
+# Editor
+.vscode/
+.idea/
+*.swp
