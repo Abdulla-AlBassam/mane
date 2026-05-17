@@ -19,6 +19,13 @@ filterlists/*.txt
 filterlists/*.json
 !filterlists/.gitkeep
 
+# Generated FFI header (regenerated each build by cbindgen)
+engine-rs/include/
+
+# Swift package build output and vendored bridge artefacts
+engine-swift/.build/
+engine-swift/Sources/CManeEngine/mane_engine.h
+
 # Editor
 .vscode/
 .idea/

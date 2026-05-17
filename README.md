@@ -6,7 +6,7 @@ A native macOS ad blocker. Wraps Brave's `adblock-rust` engine in a Liquid Glass
 
 Existing Mac adblockers split into two camps. Browser extensions like uBlock Origin block ads well but run only inside the browser, with no system view. Native Mac apps like 1Blocker or AdGuard Mini are constrained by Apple's Content Blocker API (50,000 rule cap, no DOM access, no scriptlet injection) and can't beat extensions on sites that actively detect ad blockers.
 
-Mane combines both: full-featured extensions for Safari and Chrome running the same Brave engine that powers the Brave browser, plus a native macOS dashboard that owns the rule sets, the analytics, and the configuration. One engine, three surfaces.
+Mane combines both: extensions for Safari and Chrome running the same Brave engine that powers the Brave browser, plus a native macOS dashboard that owns the rule sets, the analytics, and the configuration. One engine, three surfaces.
 
 ## Architecture
 
