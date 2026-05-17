@@ -1,0 +1,5 @@
+module CManeEngine {
+    header "mane_engine.h"
+    link "mane_engine"
+    export *
+}

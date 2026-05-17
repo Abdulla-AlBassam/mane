@@ -42,7 +42,7 @@ Mane combines both: extensions for Safari and Chrome running the same Brave engi
 
 ## Status
 
-Alpha, foundation only. Phase 1 (the Rust engine validated against EasyList) is the current scope. The Mac app, Safari extension, and Chrome extension are not built yet.
+Alpha. Phase 1 (Rust engine validated against EasyList + EasyPrivacy) and phase 2 (Swift FFI bridge with XCTest coverage) are complete. The Mac app, Safari extension, and Chrome extension are not yet built.
 
 ## Build & validate
 
@@ -50,26 +50,40 @@ Alpha, foundation only. Phase 1 (the Rust engine validated against EasyList) is 
 # fetch the filter lists (cached locally, not committed)
 ./scripts/fetch-filterlists.sh
 
-# build the engine and run the validation harness
+# Rust engine — 8 cases through adblock-rust directly
 cargo run --example test_blocker --release
+
+# Swift FFI bridge — same engine called from Swift via the C ABI
+./scripts/build-swift-bridge.sh
+swift test --package-path engine-swift
 ```
 
-A successful run prints PASS for known ad URLs (Google Tag Manager, DoubleClick, Google Analytics, Scorecard) and PASS for known content URLs (BBC assets, GitHub, Wikipedia) being allowed through.
+Both runs cover the same shape of cases: known ad and tracker URLs (Google Tag Manager, DoubleClick, Google Analytics, Scorecard) get blocked, and known content URLs (BBC assets, GitHub, Wikipedia) pass through.
 
 ## Repository layout
 
 ```
 Mane/
-├── Cargo.toml           workspace root
-├── engine-rs/           Rust engine wrapper
+├── Cargo.toml                  workspace root
+├── engine-rs/                  Rust engine wrapper
+│   ├── Cargo.toml
+│   ├── build.rs                runs cbindgen to emit the C header
+│   ├── cbindgen.toml
 │   ├── src/lib.rs
+│   ├── src/ffi.rs              C ABI for native consumers (Swift, etc.)
 │   └── examples/test_blocker.rs
+├── engine-swift/               Swift package wrapping the C ABI
+│   ├── Package.swift
+│   ├── Sources/CManeEngine/    module map + generated C header
+│   ├── Sources/ManeEngine/     Swift wrapper class
+│   └── Tests/ManeEngineTests/
 ├── scripts/
-│   └── fetch-filterlists.sh
-└── filterlists/         downloaded lists, not committed
+│   ├── fetch-filterlists.sh
+│   └── build-swift-bridge.sh   builds the Rust lib, vendors the header
+└── filterlists/                downloaded lists, not committed
 ```
 
-Future packages (added in later phases): `engine-swift/` for the FFI bridge, `mac-app/` for the SwiftUI dashboard, `safari-ext/` and `chrome-ext/` for the browser extensions.
+Future packages: `mac-app/` for the SwiftUI dashboard, `safari-ext/` and `chrome-ext/` for the browser extensions.
 
 ## Licensing
 

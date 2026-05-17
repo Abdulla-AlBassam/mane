@@ -1,4 +1,7 @@
 //! Mane engine wrapper.
 //!
-//! Phase 1 is validation-only via `examples/test_blocker.rs`.
-//! The public API will land here once the Swift FFI layer is added.
+//! Native consumers (CLI examples, tests) use this crate as a regular Rust
+//! library. The Swift Mac app consumes the same engine through the C ABI
+//! defined in [`ffi`], built into a static library by `cargo build`.
+
+pub mod ffi;
