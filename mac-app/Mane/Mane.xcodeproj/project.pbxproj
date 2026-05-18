@@ -23,6 +23,7 @@
 		80F835122FBB745F001EB36C /* scripts in Resources */ = {isa = PBXBuildFile; fileRef = 80F8350D2FBB745F001EB36C /* scripts */; };
 		80F835132FBB745F001EB36C /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 80F8350E2FBB745F001EB36C /* manifest.json */; };
 		80F835152FBB745F001EB36C /* engine in Resources */ = {isa = PBXBuildFile; fileRef = 80F835142FBB745F001EB36C /* engine */; };
+		80F835172FBB745F001EB36C /* rules.json in Resources */ = {isa = PBXBuildFile; fileRef = 80F835162FBB745F001EB36C /* rules.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		80F8350D2FBB745F001EB36C /* scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = scripts; path = "../../../safari-ext/scripts"; sourceTree = "<group>"; };
 		80F8350E2FBB745F001EB36C /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = manifest.json; path = "../../../safari-ext/manifest.json"; sourceTree = "<group>"; };
 		80F835142FBB745F001EB36C /* engine */ = {isa = PBXFileReference; lastKnownFileType = folder; name = engine; path = "../../../safari-ext/engine"; sourceTree = "<group>"; };
+		80F835162FBB745F001EB36C /* rules.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = rules.json; path = "../../../safari-ext/rules.json"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +152,7 @@
 				80F8350C2FBB745F001EB36C /* background.js */,
 				80F8350D2FBB745F001EB36C /* scripts */,
 				80F8350E2FBB745F001EB36C /* manifest.json */,
+				80F835162FBB745F001EB36C /* rules.json */,
 			);
 			name = Resources;
 			path = "Mane Extension";
@@ -258,6 +261,7 @@
 				80F835152FBB745F001EB36C /* engine in Resources */,
 				80F835112FBB745F001EB36C /* background.js in Resources */,
 				80F835132FBB745F001EB36C /* manifest.json in Resources */,
+				80F835172FBB745F001EB36C /* rules.json in Resources */,
 				80F835102FBB745F001EB36C /* popup in Resources */,
 				80F835122FBB745F001EB36C /* scripts in Resources */,
 			);

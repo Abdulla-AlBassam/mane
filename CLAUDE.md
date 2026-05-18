@@ -13,8 +13,9 @@ Native macOS ad blocker wrapping Brave's `adblock-rust`. Liquid Glass SwiftUI da
 cargo run --example test_blocker --release      # Rust validation harness (8 cases)
 ./scripts/build-swift-bridge.sh                 # build Rust lib + vendor C header into engine-swift/
 swift test --package-path engine-swift          # XCTest suite for the FFI bridge (6 cases)
-./scripts/build-wasm-engine.sh                  # compile engine-wasm/ into safari-ext/engine/
-./safari-ext/scripts/sync-filters.sh            # copy filter lists into the Safari bundle
+./scripts/build-rules.sh                        # compile filter lists into safari-ext/rules.json (declarativeNetRequest)
+./scripts/build-wasm-engine.sh                  # (currently unused at runtime) compile engine-wasm/ into safari-ext/engine/
+./safari-ext/scripts/sync-filters.sh            # copy filter lists into the Safari bundle (not strictly needed once rules.json exists)
 xcodebuild -project mac-app/Mane/Mane.xcodeproj -scheme Mane build
 ```
 
@@ -53,7 +54,13 @@ Do not commit to GitHub or push to `origin`. Local commits only, unless Abdulla 
 
 ## Current phase
 
-**Phase 3b code complete, awaiting first run in Safari.** The WASM build of `engine-wasm/` lands in `safari-ext/engine/` and is bundled by Xcode as part of the `Mane Extension.appex`. `background.js` boots the engine, loads EasyList + EasyPrivacy, and calls `engine.check()` from the `webRequest.onBeforeRequest` listener. The build chain (`build-wasm-engine.sh` → `sync-filters.sh` → `xcodebuild`) is green.
+**Phase 3c in progress — declarativeNetRequest path.** The engine successfully matched ads in 3b but Safari MV3 silently ignores `{cancel: true}` from `webRequest` listeners. Switched to the standard MV3 path: a static ruleset bundled with the extension that the browser blocks against in its own network stack.
+
+Pipeline now: `engine-rs/examples/compile_rules.rs` reads `filterlists/`, calls Brave's `FilterSet::into_content_blocking()`, maps each Safari Content Blocker rule to declarativeNetRequest format, writes `safari-ext/rules.json`. `manifest.json` declares the ruleset under `declarative_net_request.rule_resources`. `background.js` no longer runs the engine at runtime — it just counts matches for the popup (best effort via `onRuleMatchedDebug` if the browser exposes it).
+
+Current rule count: 116,944 (with 23,898 skipped: cookie-blocking, cosmetic CSS hiding, and HTTPS upgrade rules that don't map to dNR). The bundled `rules.json` is ~15 MB.
+
+The `engine-wasm/` crate and `safari-ext/engine/` build output are kept but currently unused at runtime. They come back for cosmetic filtering and the element picker in phase 4.
 
 The repo is on `origin/main` at https://github.com/Abdulla-AlBassam/mane but local commits are not pushed by default.
 
@@ -66,9 +73,10 @@ Manual verification path for first run:
 6. Visit an ad-heavy site, then Develop → Web Inspector → Console on the extension's background page to see `[Mane] engine ready` and any boot errors.
 
 Known things that may need follow-up after the first run:
-- The `safari-web-extension-converter` flagged `webRequestBlocking` and `background.type: "module"` as not supported. If the background fails to load on macOS 26 Safari, switch to a classic background script with `importScripts` and rebuild the WASM with `wasm-pack --target no-modules`. If `webRequest.onBeforeRequest` returns observe-only (no `cancel`), switch the listener to `declarativeNetRequest` with a rules converter.
+- If Safari refuses the 116k-rule single ruleset (likely limit ~50k–100k per ruleset, varies by Safari version), split into multiple rulesets in the manifest. The compiler can be re-run with chunked output, or the existing JSON can be split in JS at build time.
+- Some compiled regexes may be too complex for Safari/Chrome's regex engine. If the ruleset fails to load, the console will name the offending rule index — drop those rules from the compiler output.
 - No icons yet. Add 128/256/512 PNGs to `safari-ext/images/` and reference them from `manifest.json` once we have art.
-- The `Mane` container app currently uses the converter's default storyboard view that nags the user to enable the extension in Safari. Phase 4 swaps that for the SwiftUI Liquid Glass dashboard.
+- The `Mane` container app currently uses the converter's default storyboard view that nags the user to enable the extension in Safari. The SwiftUI Liquid Glass dashboard replaces it once network blocking is verified working.
 
 ## Target platform
 

@@ -11,7 +11,11 @@ repository.workspace = true
 crate-type = ["rlib", "staticlib", "cdylib"]
 
 [dependencies]
-adblock = "0.12.5"
+adblock = { version = "0.12.5", features = ["content-blocking"] }
+
+[dev-dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
 
 [build-dependencies]
 cbindgen = "0.29.2"

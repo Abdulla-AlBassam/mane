@@ -8,8 +8,8 @@
     "type": "module"
   },
   "permissions": [
-    "webRequest",
-    "webRequestBlocking",
+    "declarativeNetRequest",
+    "declarativeNetRequestFeedback",
     "storage"
   ],
   "host_permissions": [
@@ -19,13 +19,13 @@
     "default_popup": "popup/popup.html",
     "default_title": "Mane"
   },
-  "content_security_policy": {
-    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'"
-  },
-  "web_accessible_resources": [
-    {
-      "resources": ["engine/mane_engine_wasm_bg.wasm"],
-      "matches": ["<all_urls>"]
-    }
-  ]
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "mane-main",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
+  }
 }
