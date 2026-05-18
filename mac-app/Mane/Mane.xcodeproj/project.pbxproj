@@ -22,6 +22,7 @@
 		80F835112FBB745F001EB36C /* background.js in Resources */ = {isa = PBXBuildFile; fileRef = 80F8350C2FBB745F001EB36C /* background.js */; };
 		80F835122FBB745F001EB36C /* scripts in Resources */ = {isa = PBXBuildFile; fileRef = 80F8350D2FBB745F001EB36C /* scripts */; };
 		80F835132FBB745F001EB36C /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 80F8350E2FBB745F001EB36C /* manifest.json */; };
+		80F835152FBB745F001EB36C /* engine in Resources */ = {isa = PBXBuildFile; fileRef = 80F835142FBB745F001EB36C /* engine */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		80F8350C2FBB745F001EB36C /* background.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = background.js; path = "../../../safari-ext/background.js"; sourceTree = "<group>"; };
 		80F8350D2FBB745F001EB36C /* scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = scripts; path = "../../../safari-ext/scripts"; sourceTree = "<group>"; };
 		80F8350E2FBB745F001EB36C /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = manifest.json; path = "../../../safari-ext/manifest.json"; sourceTree = "<group>"; };
+		80F835142FBB745F001EB36C /* engine */ = {isa = PBXFileReference; lastKnownFileType = folder; name = engine; path = "../../../safari-ext/engine"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				80F8350A2FBB745F001EB36C /* filters */,
+				80F835142FBB745F001EB36C /* engine */,
 				80F8350B2FBB745F001EB36C /* popup */,
 				80F8350C2FBB745F001EB36C /* background.js */,
 				80F8350D2FBB745F001EB36C /* scripts */,
@@ -252,6 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				80F8350F2FBB745F001EB36C /* filters in Resources */,
+				80F835152FBB745F001EB36C /* engine in Resources */,
 				80F835112FBB745F001EB36C /* background.js in Resources */,
 				80F835132FBB745F001EB36C /* manifest.json in Resources */,
 				80F835102FBB745F001EB36C /* popup in Resources */,

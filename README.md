@@ -42,7 +42,7 @@ Mane combines both: extensions for Safari and Chrome running the same Brave engi
 
 ## Status
 
-Alpha. Phase 1 (Rust engine validated against EasyList + EasyPrivacy), phase 2 (Swift FFI bridge with XCTest coverage), and phase 3a (Safari Web Extension scaffold + container Xcode project) are complete. The extension builds and loads in Safari but still calls a stub matcher; the WASM engine binding lands in phase 3b. The Chrome extension and the SwiftUI dashboard are not yet built.
+Alpha. Phase 1 (Rust engine validated against EasyList + EasyPrivacy), phase 2 (Swift FFI bridge with XCTest coverage), and phase 3 (Safari Web Extension with the engine compiled to WASM) are code-complete. The extension is built, the engine is bundled, and first-run verification in Safari is the next manual step. The Chrome extension and the SwiftUI dashboard are not yet built.
 
 ## Build & validate
 
@@ -77,14 +77,19 @@ Mane/
 │   ├── Sources/CManeEngine/    module map + generated C header
 │   ├── Sources/ManeEngine/     Swift wrapper class
 │   └── Tests/ManeEngineTests/
+├── engine-wasm/                Rust crate, compiled to WASM for the browser
+│   ├── Cargo.toml
+│   └── src/lib.rs              wasm-bindgen wrapper around adblock-rust
 ├── scripts/
 │   ├── fetch-filterlists.sh
-│   └── build-swift-bridge.sh   builds the Rust lib, vendors the header
+│   ├── build-swift-bridge.sh   builds the Rust lib, vendors the header
+│   └── build-wasm-engine.sh    runs wasm-pack, drops output in safari-ext/engine/
 ├── filterlists/                downloaded lists, not committed
 ├── safari-ext/                 web extension source (MV3)
 │   ├── manifest.json
-│   ├── background.js           service worker, request listener, stub matcher
+│   ├── background.js           service worker, request listener, real engine
 │   ├── popup/                  toolbar popup
+│   ├── engine/                 compiled WASM + JS glue, not committed
 │   ├── filters/                synced from filterlists/, not committed
 │   └── scripts/sync-filters.sh
 └── mac-app/Mane/               Xcode project
@@ -93,7 +98,7 @@ Mane/
     └── Mane Extension/         Safari Web Extension target
 ```
 
-The Chrome extension (phase 4) will live in `chrome-ext/`. The SwiftUI dashboard lands in the existing `Mane/` app target once phase 3b ships the real engine.
+The Chrome extension (phase 4) will live in `chrome-ext/`. The SwiftUI dashboard replaces the placeholder container app inside `mac-app/Mane/Mane/` in a later phase.
 
 ## Licensing
 

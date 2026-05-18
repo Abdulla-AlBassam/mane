@@ -1,0 +1,15 @@
+[package]
+name = "mane-engine-wasm"
+version = "0.1.0"
+description = "Browser-facing WASM wrapper around Brave's adblock-rust engine"
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+adblock = { version = "0.12.5", default-features = false, features = ["embedded-domain-resolver", "full-regex-handling", "single-thread"] }
+wasm-bindgen = "0.2"

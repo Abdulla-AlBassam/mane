@@ -1,9 +1,11 @@
 // Mane background service worker.
 //
-// Phase 3 scaffold: filter lists load, the request listener is registered,
-// blocked counts are tracked. The matching engine is a stub that returns
-// false for every request. Phase 3b will replace the stub with a WASM build
-// of Brave's adblock-rust crate.
+// On boot: load EasyList + EasyPrivacy from the bundle, hand them to the
+// WASM engine, then call engine.check() for every outgoing request. If the
+// engine boot fails for any reason, the listener falls through and allows
+// every request rather than breaking the page.
+
+import init, { Engine } from "./engine/mane_engine_wasm.js";
 
 const ext = globalThis.browser ?? globalThis.chrome;
 
@@ -26,30 +28,15 @@ async function loadFilterLists() {
       return res.text();
     }),
   );
-  return sources;
-}
-
-function buildStubEngine(rawLists) {
-  const ruleCount = rawLists.reduce(
-    (sum, text) => sum + text.split("\n").filter((l) => l && !l.startsWith("!")).length,
-    0,
-  );
-  return {
-    ruleCount,
-    matches(_url, _sourceUrl, _type) {
-      return false;
-    },
-  };
+  return sources.join("\n");
 }
 
 async function bootEngine() {
   try {
-    const rawLists = await loadFilterLists();
-    // TODO(phase-3b): replace stub with adblock-rust compiled to WASM.
-    // Build the engine off the loaded list text, then call engine.matches
-    // from the webRequest listener below.
-    engine = buildStubEngine(rawLists);
-    console.log(`[Mane] engine ready: ${engine.ruleCount} rules`);
+    await init(ext.runtime.getURL("engine/mane_engine_wasm_bg.wasm"));
+    const rules = await loadFilterLists();
+    engine = new Engine(rules);
+    console.log("[Mane] engine ready");
   } catch (err) {
     console.error("[Mane] engine boot failed:", err);
   }
@@ -59,7 +46,7 @@ ext.webRequest.onBeforeRequest.addListener(
   (details) => {
     if (!engine) return {};
     const source = details.initiator ?? details.documentUrl ?? "";
-    if (engine.matches(details.url, source, details.type)) {
+    if (engine.check(details.url, source, details.type)) {
       blockedCount += 1;
       return { cancel: true };
     }
