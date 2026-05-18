@@ -1,0 +1,613 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		80F834E12FBB745D001EB36C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F834E02FBB745D001EB36C /* AppDelegate.swift */; };
+		80F834E52FBB745D001EB36C /* Main.html in Resources */ = {isa = PBXBuildFile; fileRef = 80F834E32FBB745D001EB36C /* Main.html */; };
+		80F834E72FBB745D001EB36C /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F834E62FBB745D001EB36C /* Icon.png */; };
+		80F834E92FBB745D001EB36C /* Style.css in Resources */ = {isa = PBXBuildFile; fileRef = 80F834E82FBB745D001EB36C /* Style.css */; };
+		80F834EB2FBB745D001EB36C /* Script.js in Resources */ = {isa = PBXBuildFile; fileRef = 80F834EA2FBB745D001EB36C /* Script.js */; };
+		80F834ED2FBB745D001EB36C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F834EC2FBB745D001EB36C /* ViewController.swift */; };
+		80F834F02FBB745D001EB36C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80F834EE2FBB745D001EB36C /* Main.storyboard */; };
+		80F834F22FBB745E001EB36C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80F834F12FBB745E001EB36C /* Assets.xcassets */; };
+		80F834F92FBB745E001EB36C /* Mane Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 80F834F82FBB745E001EB36C /* Mane Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		80F834FE2FBB745E001EB36C /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F834FD2FBB745E001EB36C /* SafariWebExtensionHandler.swift */; };
+		80F8350F2FBB745F001EB36C /* filters in Resources */ = {isa = PBXBuildFile; fileRef = 80F8350A2FBB745F001EB36C /* filters */; };
+		80F835102FBB745F001EB36C /* popup in Resources */ = {isa = PBXBuildFile; fileRef = 80F8350B2FBB745F001EB36C /* popup */; };
+		80F835112FBB745F001EB36C /* background.js in Resources */ = {isa = PBXBuildFile; fileRef = 80F8350C2FBB745F001EB36C /* background.js */; };
+		80F835122FBB745F001EB36C /* scripts in Resources */ = {isa = PBXBuildFile; fileRef = 80F8350D2FBB745F001EB36C /* scripts */; };
+		80F835132FBB745F001EB36C /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 80F8350E2FBB745F001EB36C /* manifest.json */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		80F834FA2FBB745E001EB36C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 80F834D52FBB745D001EB36C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 80F834F72FBB745E001EB36C;
+			remoteInfo = "Mane Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		80F835052FBB745E001EB36C /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				80F834F92FBB745E001EB36C /* Mane Extension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		80F834DD2FBB745D001EB36C /* Mane.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mane.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		80F834E02FBB745D001EB36C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		80F834E42FBB745D001EB36C /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = Base.lproj/Main.html; sourceTree = "<group>"; };
+		80F834E62FBB745D001EB36C /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		80F834E82FBB745D001EB36C /* Style.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = Style.css; sourceTree = "<group>"; };
+		80F834EA2FBB745D001EB36C /* Script.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Script.js; sourceTree = "<group>"; };
+		80F834EC2FBB745D001EB36C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		80F834EF2FBB745D001EB36C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		80F834F12FBB745E001EB36C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		80F834F32FBB745E001EB36C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		80F834F82FBB745E001EB36C /* Mane Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Mane Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		80F834FD2FBB745E001EB36C /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
+		80F834FF2FBB745E001EB36C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		80F8350A2FBB745F001EB36C /* filters */ = {isa = PBXFileReference; lastKnownFileType = folder; name = filters; path = "../../../safari-ext/filters"; sourceTree = "<group>"; };
+		80F8350B2FBB745F001EB36C /* popup */ = {isa = PBXFileReference; lastKnownFileType = folder; name = popup; path = "../../../safari-ext/popup"; sourceTree = "<group>"; };
+		80F8350C2FBB745F001EB36C /* background.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = background.js; path = "../../../safari-ext/background.js"; sourceTree = "<group>"; };
+		80F8350D2FBB745F001EB36C /* scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = scripts; path = "../../../safari-ext/scripts"; sourceTree = "<group>"; };
+		80F8350E2FBB745F001EB36C /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = manifest.json; path = "../../../safari-ext/manifest.json"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		80F834DA2FBB745D001EB36C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80F834F52FBB745E001EB36C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		80F834D42FBB745D001EB36C = {
+			isa = PBXGroup;
+			children = (
+				80F834DF2FBB745D001EB36C /* Mane */,
+				80F834FC2FBB745E001EB36C /* Mane Extension */,
+				80F834DE2FBB745D001EB36C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		80F834DE2FBB745D001EB36C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				80F834DD2FBB745D001EB36C /* Mane.app */,
+				80F834F82FBB745E001EB36C /* Mane Extension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		80F834DF2FBB745D001EB36C /* Mane */ = {
+			isa = PBXGroup;
+			children = (
+				80F834E02FBB745D001EB36C /* AppDelegate.swift */,
+				80F834EC2FBB745D001EB36C /* ViewController.swift */,
+				80F834EE2FBB745D001EB36C /* Main.storyboard */,
+				80F834F12FBB745E001EB36C /* Assets.xcassets */,
+				80F834F32FBB745E001EB36C /* Info.plist */,
+				80F834E22FBB745D001EB36C /* Resources */,
+			);
+			path = Mane;
+			sourceTree = "<group>";
+		};
+		80F834E22FBB745D001EB36C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				80F834E32FBB745D001EB36C /* Main.html */,
+				80F834E62FBB745D001EB36C /* Icon.png */,
+				80F834E82FBB745D001EB36C /* Style.css */,
+				80F834EA2FBB745D001EB36C /* Script.js */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		80F834FC2FBB745E001EB36C /* Mane Extension */ = {
+			isa = PBXGroup;
+			children = (
+				80F835092FBB745F001EB36C /* Resources */,
+				80F834FD2FBB745E001EB36C /* SafariWebExtensionHandler.swift */,
+				80F834FF2FBB745E001EB36C /* Info.plist */,
+			);
+			path = "Mane Extension";
+			sourceTree = "<group>";
+		};
+		80F835092FBB745F001EB36C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				80F8350A2FBB745F001EB36C /* filters */,
+				80F8350B2FBB745F001EB36C /* popup */,
+				80F8350C2FBB745F001EB36C /* background.js */,
+				80F8350D2FBB745F001EB36C /* scripts */,
+				80F8350E2FBB745F001EB36C /* manifest.json */,
+			);
+			name = Resources;
+			path = "Mane Extension";
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		80F834DC2FBB745D001EB36C /* Mane */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 80F835062FBB745E001EB36C /* Build configuration list for PBXNativeTarget "Mane" */;
+			buildPhases = (
+				80F834D92FBB745D001EB36C /* Sources */,
+				80F834DA2FBB745D001EB36C /* Frameworks */,
+				80F834DB2FBB745D001EB36C /* Resources */,
+				80F835052FBB745E001EB36C /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				80F834FB2FBB745E001EB36C /* PBXTargetDependency */,
+			);
+			name = Mane;
+			packageProductDependencies = (
+			);
+			productName = Mane;
+			productReference = 80F834DD2FBB745D001EB36C /* Mane.app */;
+			productType = "com.apple.product-type.application";
+		};
+		80F834F72FBB745E001EB36C /* Mane Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 80F835022FBB745E001EB36C /* Build configuration list for PBXNativeTarget "Mane Extension" */;
+			buildPhases = (
+				80F834F42FBB745E001EB36C /* Sources */,
+				80F834F52FBB745E001EB36C /* Frameworks */,
+				80F834F62FBB745E001EB36C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Mane Extension";
+			packageProductDependencies = (
+			);
+			productName = "Mane Extension";
+			productReference = 80F834F82FBB745E001EB36C /* Mane Extension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		80F834D52FBB745D001EB36C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2620;
+				LastUpgradeCheck = 2620;
+				TargetAttributes = {
+					80F834DC2FBB745D001EB36C = {
+						CreatedOnToolsVersion = 26.2;
+					};
+					80F834F72FBB745E001EB36C = {
+						CreatedOnToolsVersion = 26.2;
+					};
+				};
+			};
+			buildConfigurationList = 80F834D82FBB745D001EB36C /* Build configuration list for PBXProject "Mane" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 80F834D42FBB745D001EB36C;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 80F834DE2FBB745D001EB36C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				80F834DC2FBB745D001EB36C /* Mane */,
+				80F834F72FBB745E001EB36C /* Mane Extension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		80F834DB2FBB745D001EB36C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80F834E72FBB745D001EB36C /* Icon.png in Resources */,
+				80F834F02FBB745D001EB36C /* Main.storyboard in Resources */,
+				80F834EB2FBB745D001EB36C /* Script.js in Resources */,
+				80F834E52FBB745D001EB36C /* Main.html in Resources */,
+				80F834F22FBB745E001EB36C /* Assets.xcassets in Resources */,
+				80F834E92FBB745D001EB36C /* Style.css in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80F834F62FBB745E001EB36C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80F8350F2FBB745F001EB36C /* filters in Resources */,
+				80F835112FBB745F001EB36C /* background.js in Resources */,
+				80F835132FBB745F001EB36C /* manifest.json in Resources */,
+				80F835102FBB745F001EB36C /* popup in Resources */,
+				80F835122FBB745F001EB36C /* scripts in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		80F834D92FBB745D001EB36C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80F834ED2FBB745D001EB36C /* ViewController.swift in Sources */,
+				80F834E12FBB745D001EB36C /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80F834F42FBB745E001EB36C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80F834FE2FBB745E001EB36C /* SafariWebExtensionHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		80F834FB2FBB745E001EB36C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 80F834F72FBB745E001EB36C /* Mane Extension */;
+			targetProxy = 80F834FA2FBB745E001EB36C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		80F834E32FBB745D001EB36C /* Main.html */ = {
+			isa = PBXVariantGroup;
+			children = (
+				80F834E42FBB745D001EB36C /* Base */,
+			);
+			name = Main.html;
+			sourceTree = "<group>";
+		};
+		80F834EE2FBB745D001EB36C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				80F834EF2FBB745D001EB36C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		80F835002FBB745E001EB36C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		80F835012FBB745E001EB36C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		80F835032FBB745E001EB36C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Mane Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Mane Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.albassam.mane.Extension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		80F835042FBB745E001EB36C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Mane Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Mane Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.albassam.mane.Extension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		80F835072FBB745E001EB36C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Mane/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Mane;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+					"-framework",
+					WebKit,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.albassam.mane;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		80F835082FBB745E001EB36C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Mane/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Mane;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+					"-framework",
+					WebKit,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.albassam.mane;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		80F834D82FBB745D001EB36C /* Build configuration list for PBXProject "Mane" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				80F835002FBB745E001EB36C /* Debug */,
+				80F835012FBB745E001EB36C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		80F835022FBB745E001EB36C /* Build configuration list for PBXNativeTarget "Mane Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				80F835032FBB745E001EB36C /* Debug */,
+				80F835042FBB745E001EB36C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		80F835062FBB745E001EB36C /* Build configuration list for PBXNativeTarget "Mane" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				80F835072FBB745E001EB36C /* Debug */,
+				80F835082FBB745E001EB36C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 80F834D52FBB745D001EB36C /* Project object */;
+}

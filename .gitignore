@@ -19,6 +19,11 @@ filterlists/*.txt
 filterlists/*.json
 !filterlists/.gitkeep
 
+# Synced copies inside the Safari extension bundle
+safari-ext/filters/*.txt
+safari-ext/filters/*.json
+!safari-ext/filters/.gitkeep
+
 # Generated FFI header (regenerated each build by cbindgen)
 engine-rs/include/
 

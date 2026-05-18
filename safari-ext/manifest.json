@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "Mane",
+  "version": "0.1.0",
+  "description": "Native ad blocker for Safari, powered by Brave's adblock-rust engine.",
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "permissions": [
+    "webRequest",
+    "webRequestBlocking",
+    "storage"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "Mane"
+  }
+}

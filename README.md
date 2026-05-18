@@ -42,7 +42,7 @@ Mane combines both: extensions for Safari and Chrome running the same Brave engi
 
 ## Status
 
-Alpha. Phase 1 (Rust engine validated against EasyList + EasyPrivacy) and phase 2 (Swift FFI bridge with XCTest coverage) are complete. The Mac app, Safari extension, and Chrome extension are not yet built.
+Alpha. Phase 1 (Rust engine validated against EasyList + EasyPrivacy), phase 2 (Swift FFI bridge with XCTest coverage), and phase 3a (Safari Web Extension scaffold + container Xcode project) are complete. The extension builds and loads in Safari but still calls a stub matcher; the WASM engine binding lands in phase 3b. The Chrome extension and the SwiftUI dashboard are not yet built.
 
 ## Build & validate
 
@@ -80,10 +80,20 @@ Mane/
 ├── scripts/
 │   ├── fetch-filterlists.sh
 │   └── build-swift-bridge.sh   builds the Rust lib, vendors the header
-└── filterlists/                downloaded lists, not committed
+├── filterlists/                downloaded lists, not committed
+├── safari-ext/                 web extension source (MV3)
+│   ├── manifest.json
+│   ├── background.js           service worker, request listener, stub matcher
+│   ├── popup/                  toolbar popup
+│   ├── filters/                synced from filterlists/, not committed
+│   └── scripts/sync-filters.sh
+└── mac-app/Mane/               Xcode project
+    ├── Mane.xcodeproj
+    ├── Mane/                   container app target
+    └── Mane Extension/         Safari Web Extension target
 ```
 
-Future packages: `mac-app/` for the SwiftUI dashboard, `safari-ext/` and `chrome-ext/` for the browser extensions.
+The Chrome extension (phase 4) will live in `chrome-ext/`. The SwiftUI dashboard lands in the existing `Mane/` app target once phase 3b ships the real engine.
 
 ## Licensing
 

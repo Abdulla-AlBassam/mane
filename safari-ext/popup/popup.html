@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Mane</title>
+  <style>
+    :root { color-scheme: light dark; }
+    body {
+      font-family: -apple-system, system-ui, sans-serif;
+      width: 240px;
+      margin: 0;
+      padding: 14px 16px;
+    }
+    h1 { font-size: 14px; font-weight: 600; margin: 0 0 6px; }
+    .status { font-size: 12px; opacity: 0.7; margin-bottom: 10px; }
+    .count { font-size: 22px; font-weight: 500; margin-bottom: 12px; }
+    button {
+      width: 100%;
+      padding: 6px 10px;
+      font: inherit;
+      border-radius: 6px;
+      border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
+      background: transparent;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Mane</h1>
+  <div class="status" id="status">Loading…</div>
+  <div class="count" id="count">—</div>
+  <button id="toggle" disabled>Pause on this site</button>
+  <script src="popup.js"></script>
+</body>
+</html>
