@@ -88,3 +88,95 @@ Known things that may need follow-up after the first run:
 ## Distribution
 
 Apple Developer Program membership is available. Signed + notarized builds are the default plan from phase 7, not a "later" concern.
+
+---
+
+## Session: 2026-05-18
+
+### Accomplished
+- Verified phase 3c end-to-end on theguardian.com — Safari blocks ads natively via the bundled declarativeNetRequest ruleset. Blocking is real.
+- Diagnosed the popup counter showing "0 blocked" while blocking is active.
+- Confirmed `cd452df` (phase 3c) is the current tip with a clean tree; no pending commits to make.
+
+### Decisions Made
+- Counter fix deferred. The popup relies on `declarativeNetRequest.onRuleMatchedDebug`, which Safari likely doesn't fire, and the background service worker is torn down between requests, so any in-memory tally evaporates regardless. Fixing it properly means moving stats into `chrome.storage.session` (or similar persistent surface) and accepting that Safari may never expose per-rule callbacks. Not worth interrupting the dashboard work for.
+- Next-session priority is the SwiftUI Liquid Glass dashboard, not phase 4 (Chrome extension). The container app still shows the converter's default storyboard nag, and the README's pitch hinges on the native dashboard. Network blocking is verified, which was the gate for replacing the nag screen.
+
+### Files Changed
+- None — this was a verification and planning session.
+
+### Next Steps
+- Replace the container app's converter-default storyboard with the SwiftUI Liquid Glass dashboard. It will need a real stats source, so this work and the counter fix will probably converge.
+- Decide later between two routes for stats: persist counts via `chrome.storage.session` from the background worker (browser-side truth), or surface stats from the Rust engine via XPC into the container app (native-side truth). The latter fits the Liquid Glass aesthetic better.
+- Phase 4 still on the board: Chrome MV3 extension, cosmetic filtering, element picker.
+
+### Notes/Blockers
+- "0 blocked" in the popup is a known follow-up, not a regression. Add it to the existing follow-ups list above the next time the project-overview section is touched.
+- Safari accepted the 116,944-rule single ruleset without complaint, so the "may need to chunk" follow-up can be downgraded in priority.
+- The compiled `rules.json` is ~15 MB and lives at `safari-ext/rules.json` — gitignored regenerated artefact, rebuilt by `./scripts/build-rules.sh`.
+
+---
+
+## Session: 2026-05-18 (continued)
+
+### Accomplished
+- Installed the `rust-analyzer-lsp` Claude Code plugin from the official marketplace. Active on next session start; `rust-analyzer` binary already at `~/.cargo/bin`.
+- Locked in the dashboard scope and wrote the full implementation plan to `DASHBOARD_PLAN.md` at the repo root.
+
+### Decisions Made
+- Dashboard scope upgraded from "native-only" to "native + live block counts". Triggered by a reference screenshot showing an analytics-style layout (KPI tiles plus charts); empty tiles and empty charts would look broken, so the counter work moves into v1 instead of v2.
+- Stats source is the Safari extension via `chrome.storage.local`, surfaced to the container app through `SFSafariExtensionHandler`. The Rust engine still provides rule count and filter list freshness directly via FFI (no IPC for those).
+- Project file edits are mine to attempt in code rather than handing UI steps to the user. Faster, with Xcode UI fallback when needed.
+
+### Files Changed
+- `CLAUDE.md` — added this entry.
+- `DASHBOARD_PLAN.md` — new handover doc with the 7-step plan, visual direction, gotchas, and out-of-scope items.
+
+### Next Steps
+- Execute `DASHBOARD_PLAN.md` step 1: strip the converter shell (storyboard, ViewController, Main.html), convert `AppDelegate` to `@main struct ManeApp: App`.
+- Investigate whether Safari returns useful results from `chrome.declarativeNetRequest.getMatchedRules()` for static rulesets before building the full Activity card. If it returns empty, the counter design needs a different angle.
+
+### Notes/Blockers
+- LSP plugin: confirmed via `claude plugin install rust-analyzer-lsp@claude-plugins-official`. Settings recorded in `~/.claude/plugins/installed_plugins.json`.
+- The earlier session's note about deferring the popup counter is now superseded: the counter is part of dashboard v1, not a separate piece of work.
+
+---
+
+## Session: 2026-05-19
+
+### Accomplished
+- Shipped DASHBOARD_PLAN.md end-to-end: stripped converter shell, linked `engine-swift`, wired the stats bridge, built the Liquid Glass dashboard, verified live on strikeout.im / theguardian.com / rottentomatoes.com (130+ blocks today, real per-domain data).
+- `getMatchedRules()` confirmed working on Safari for static rulesets, the largest unknown in the plan.
+- Switched `engine-rs` to static-only linking (`crate-type = ["rlib", "staticlib"]`). `libmane_engine.a` is absorbed into Mane.debug.dylib at link time, binary grew from ~600KB to 6.4MB, `otool -L` shows zero external mane_engine references.
+- Engine on/off toggle bridge: dashboard writes `~/Library/Containers/com.albassam.mane.Extension/Data/Documents/mane-control.json`, `background.js` polls via `runtime.sendNativeMessage` on each top-level navigation and applies state via `declarativeNetRequest.updateEnabledRulesets`.
+- `compile_rules.rs` now emits `safari-ext/filterlists-meta.json` (rule count, skipped count, compiled-at, list mtimes/sizes); bundled into the Mane app, so the dashboard reads rule count and freshness without instantiating the engine at runtime.
+- Logo cream background chroma-keyed out via PIL (target rgb 246/241/238, inner 12 / outer 22 thresholds). AppIcon at 7 sizes plus `LargeIcon` regenerated from the transparent source.
+- Dashboard v2 redesign: removed wordmark and "Engine live" badge; added master engine toggle (white→green) next to the logo; refresh button + monospaced "Updated" timer + ellipsis "Engine details" button on the right.
+- Today + All time became feature cards. Today: big number + 24-hour bar chart with peak indicator. All time: big number + W/M/Y segmented picker + bar chart. Blocks Over Time card removed (redundant).
+- Tracker taxonomy + categorisation (`TrackerTaxonomy.swift`, ~80 known trackers across Google / Meta / X / LinkedIn / Amazon / Microsoft / Adobe + major ad networks + analytics platforms). Categories Ads / Analytics / Social / Fingerprint / CDN / Search / Other with tints. Top Blocked Domains card now groups by parent company with category pills; "View all" sheet has By company / By domain toggle, search, and expandable companies.
+- Adopted Liquid Glass APIs: `GlassEffectContainer` wraps the header right-side cluster, `GlassCircleButtonStyle` and `GlassPillButtonStyle` on refresh / ellipsis / close / view-all buttons, cards keep `glassEffect(in: .rect)` with `regularMaterial` fallback.
+- Popup "undefined blocked" fixed: service worker returns `{ready:false, blocked:0}` while warming up.
+
+### Decisions Made
+- **Container app unsandboxed (`ENABLE_APP_SANDBOX = NO`).** App Groups need a development cert and `security find-identity` shows none installed. Unsandboxed Mane reads the extension's sandbox container directly. Migrate to App Group + `UserDefaults(suiteName:)` once signing is set up.
+- **Static linking, not dylib install_name patching.** The engine only runs at build time (the dNR ruleset does the blocking at runtime); no need for dynamic loading. Static archive is simpler than patching install_name plus bundling Frameworks.
+- **Group blocked traffic by parent company in the main view, drill into raw domains via the sheet.** "Google: 47 blocks" reads more meaningfully than eight technical hostnames; categories use tinted pills.
+- **Modern Safari Web Extensions don't expose `messageReceivedFromContainingApp`.** That's pre-MV3. Replacement is JS-pushes-to-native via `runtime.sendNativeMessage`; the extension polls the native handler for the control state.
+
+### Files Changed
+- New: `mac-app/Mane/Mane/TrackerTaxonomy.swift`, `Views/{EngineToggle,HeaderBar,TodayCard,AllTimeCard,DomainsCard,AdvancedSheet,DomainsSheet}.swift`, `Mane.entitlements`, `Mane Extension.entitlements`, `safari-ext/filterlists-meta.json` (generated).
+- Rewritten: `AppDelegate.swift` (Cocoa to SwiftUI App), `DashboardModel.swift`, `DashboardView.swift`, `safari-ext/background.js`, `Mane Extension/SafariWebExtensionHandler.swift`.
+- Modified: `Card.swift`, `KPITile.swift`, `FilterListsCard.swift`, `engine-rs/Cargo.toml`, `engine-rs/examples/compile_rules.rs`, `safari-ext/manifest.json` (added `webNavigation`, `nativeMessaging`), `DASHBOARD_PLAN.md`.
+- Deleted: `Views/{BlocksOverTimeChart,TopDomainsChart}.swift`, all converter shell artefacts (`Main.storyboard`, `ViewController.swift`, `Resources/`).
+- Heavy `mac-app/Mane/Mane.xcodeproj/project.pbxproj` surgery across the session.
+- Assets: AppIcon variants and `LargeIcon` regenerated from the transparent logo source.
+
+### Next Steps
+- **Waiting on Abdulla:** Xcode Settings → Accounts → Apple ID, then set the development team on both Mane and Mane Extension targets. Once done, re-enable App Sandbox, add the `group.com.albassam.mane` entitlement, swap the bridge from the Documents file to `UserDefaults(suiteName:)`. About 30 min of follow-up work.
+- Chrome MV3 extension (phase 4). Handoff note to the next agent is being written.
+- Optional polish: per-domain trend sparklines, first-seen timestamps, click-through detail on company rows beyond the current sheet.
+
+### Notes/Blockers
+- macOS Accessibility permission isn't granted for `osascript`; CLI screenshot tooling can't drive `System Events`. The user's manual screenshots are higher quality anyway.
+- An old `libmane_engine.dylib` may still exist under `target/release/deps/` from a pre-static-link build; cargo doesn't auto-remove it on `crate-type` changes. Harmless, `rm` if it bothers you.
+- The popup still uses the legacy `stats` message and shows the today total. Could be retired once the dashboard owns all user-facing display.

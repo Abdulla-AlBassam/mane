@@ -1,21 +1,11 @@
-//
-//  AppDelegate.swift
-//  Mane
-//
-//  Created by Abdulla AlBassam on 18/05/2026.
-//
-
-import Cocoa
+import SwiftUI
 
 @main
-class AppDelegate: NSObject, NSApplicationDelegate {
-
-    func applicationDidFinishLaunching(_ notification: Notification) {
-        // Override point for customization after application launch.
+struct ManeApp: App {
+    var body: some Scene {
+        WindowGroup("Mane") {
+            DashboardView()
+        }
+        .windowResizability(.contentSize)
     }
-
-    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
-        return true
-    }
-
 }

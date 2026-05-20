@@ -20,8 +20,10 @@ fetch() {
     echo "  -> $target  ($rules non-comment lines, $size)"
 }
 
-fetch easylist.txt    https://easylist.to/easylist/easylist.txt
-fetch easyprivacy.txt https://easylist.to/easylist/easyprivacy.txt
+fetch easylist.txt          https://easylist.to/easylist/easylist.txt
+fetch easyprivacy.txt       https://easylist.to/easylist/easyprivacy.txt
+fetch fanboy-annoyance.txt  https://easylist.to/easylist/fanboy-annoyance.txt
+fetch peter-lowe.txt        "https://pgl.yoyo.org/adservers/serverlist.php?hostformat=adblockplus&showintro=0&mimetype=plaintext"
 
 echo
 echo "Done."

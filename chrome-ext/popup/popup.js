@@ -31,7 +31,7 @@ function render(resp) {
 function handleToggle() {
   if (toggleEl.classList.contains("disabled")) return;
   const next = !currentEnabled;
-  ext.runtime.sendMessage({ type: "setEnabled", enabled: next }, render);
+  ext.runtime.sendMessage({ type: "setEnabled", enabled: next }, (resp) => render(resp));
 }
 
 toggleEl.addEventListener("click", handleToggle);

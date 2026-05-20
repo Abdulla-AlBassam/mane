@@ -8,12 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		80F834E12FBB745D001EB36C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F834E02FBB745D001EB36C /* AppDelegate.swift */; };
-		80F834E52FBB745D001EB36C /* Main.html in Resources */ = {isa = PBXBuildFile; fileRef = 80F834E32FBB745D001EB36C /* Main.html */; };
-		80F834E72FBB745D001EB36C /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F834E62FBB745D001EB36C /* Icon.png */; };
-		80F834E92FBB745D001EB36C /* Style.css in Resources */ = {isa = PBXBuildFile; fileRef = 80F834E82FBB745D001EB36C /* Style.css */; };
-		80F834EB2FBB745D001EB36C /* Script.js in Resources */ = {isa = PBXBuildFile; fileRef = 80F834EA2FBB745D001EB36C /* Script.js */; };
-		80F834ED2FBB745D001EB36C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F834EC2FBB745D001EB36C /* ViewController.swift */; };
-		80F834F02FBB745D001EB36C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80F834EE2FBB745D001EB36C /* Main.storyboard */; };
 		80F834F22FBB745E001EB36C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80F834F12FBB745E001EB36C /* Assets.xcassets */; };
 		80F834F92FBB745E001EB36C /* Mane Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 80F834F82FBB745E001EB36C /* Mane Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		80F834FE2FBB745E001EB36C /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F834FD2FBB745E001EB36C /* SafariWebExtensionHandler.swift */; };
@@ -24,6 +18,21 @@
 		80F835132FBB745F001EB36C /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 80F8350E2FBB745F001EB36C /* manifest.json */; };
 		80F835152FBB745F001EB36C /* engine in Resources */ = {isa = PBXBuildFile; fileRef = 80F835142FBB745F001EB36C /* engine */; };
 		80F835172FBB745F001EB36C /* rules.json in Resources */ = {isa = PBXBuildFile; fileRef = 80F835162FBB745F001EB36C /* rules.json */; };
+		90AA00032FCC745D001EB36C /* ManeEngine in Frameworks */ = {isa = PBXBuildFile; productRef = 90AA00022FCC745D001EB36C /* ManeEngine */; };
+		90AA00112FCC745D001EB36C /* DashboardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AA00102FCC745D001EB36C /* DashboardModel.swift */; };
+		90AA00212FCC745D001EB36C /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AA00202FCC745D001EB36C /* DashboardView.swift */; };
+		90AA00412FCC745D001EB36C /* filterlists-meta.json in Resources */ = {isa = PBXBuildFile; fileRef = 90AA00402FCC745D001EB36C /* filterlists-meta.json */; };
+		90AA00512FCC745D001EB36C /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AA00502FCC745D001EB36C /* Card.swift */; };
+		90AA00612FCC745D001EB36C /* KPITile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AA00602FCC745D001EB36C /* KPITile.swift */; };
+		90AA00912FCC745D001EB36C /* FilterListsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AA00902FCC745D001EB36C /* FilterListsCard.swift */; };
+		90AA01012FCC745D001EB36C /* EngineToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AA01002FCC745D001EB36C /* EngineToggle.swift */; };
+		90AA01112FCC745D001EB36C /* HeaderBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AA01102FCC745D001EB36C /* HeaderBar.swift */; };
+		90AA01212FCC745D001EB36C /* TodayCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AA01202FCC745D001EB36C /* TodayCard.swift */; };
+		90AA01312FCC745D001EB36C /* AllTimeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AA01302FCC745D001EB36C /* AllTimeCard.swift */; };
+		90AA01412FCC745D001EB36C /* DomainsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AA01402FCC745D001EB36C /* DomainsCard.swift */; };
+		90AA01512FCC745D001EB36C /* AdvancedSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AA01502FCC745D001EB36C /* AdvancedSheet.swift */; };
+		90AA01612FCC745D001EB36C /* DomainsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AA01602FCC745D001EB36C /* DomainsSheet.swift */; };
+		90AA02012FCC745D001EB36C /* TrackerTaxonomy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AA02002FCC745D001EB36C /* TrackerTaxonomy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,12 +62,6 @@
 /* Begin PBXFileReference section */
 		80F834DD2FBB745D001EB36C /* Mane.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mane.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80F834E02FBB745D001EB36C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		80F834E42FBB745D001EB36C /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = Base.lproj/Main.html; sourceTree = "<group>"; };
-		80F834E62FBB745D001EB36C /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
-		80F834E82FBB745D001EB36C /* Style.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = Style.css; sourceTree = "<group>"; };
-		80F834EA2FBB745D001EB36C /* Script.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Script.js; sourceTree = "<group>"; };
-		80F834EC2FBB745D001EB36C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		80F834EF2FBB745D001EB36C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		80F834F12FBB745E001EB36C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		80F834F32FBB745E001EB36C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80F834F82FBB745E001EB36C /* Mane Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Mane Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,6 +74,22 @@
 		80F8350E2FBB745F001EB36C /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = manifest.json; path = "../../../safari-ext/manifest.json"; sourceTree = "<group>"; };
 		80F835142FBB745F001EB36C /* engine */ = {isa = PBXFileReference; lastKnownFileType = folder; name = engine; path = "../../../safari-ext/engine"; sourceTree = "<group>"; };
 		80F835162FBB745F001EB36C /* rules.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = rules.json; path = "../../../safari-ext/rules.json"; sourceTree = "<group>"; };
+		90AA00042FCC745D001EB36C /* Mane.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Mane.entitlements; sourceTree = "<group>"; };
+		90AA00052FCC745D001EB36C /* Mane Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Mane Extension.entitlements"; sourceTree = "<group>"; };
+		90AA00102FCC745D001EB36C /* DashboardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardModel.swift; sourceTree = "<group>"; };
+		90AA00202FCC745D001EB36C /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		90AA00402FCC745D001EB36C /* filterlists-meta.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = "filterlists-meta.json"; path = "../../../safari-ext/filterlists-meta.json"; sourceTree = "<group>"; };
+		90AA00502FCC745D001EB36C /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		90AA00602FCC745D001EB36C /* KPITile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KPITile.swift; sourceTree = "<group>"; };
+		90AA00902FCC745D001EB36C /* FilterListsCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterListsCard.swift; sourceTree = "<group>"; };
+		90AA01002FCC745D001EB36C /* EngineToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngineToggle.swift; sourceTree = "<group>"; };
+		90AA01102FCC745D001EB36C /* HeaderBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderBar.swift; sourceTree = "<group>"; };
+		90AA01202FCC745D001EB36C /* TodayCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayCard.swift; sourceTree = "<group>"; };
+		90AA01302FCC745D001EB36C /* AllTimeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTimeCard.swift; sourceTree = "<group>"; };
+		90AA01402FCC745D001EB36C /* DomainsCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainsCard.swift; sourceTree = "<group>"; };
+		90AA01502FCC745D001EB36C /* AdvancedSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedSheet.swift; sourceTree = "<group>"; };
+		90AA01602FCC745D001EB36C /* DomainsSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainsSheet.swift; sourceTree = "<group>"; };
+		90AA02002FCC745D001EB36C /* TrackerTaxonomy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerTaxonomy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90AA00032FCC745D001EB36C /* ManeEngine in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,24 +133,15 @@
 			isa = PBXGroup;
 			children = (
 				80F834E02FBB745D001EB36C /* AppDelegate.swift */,
-				80F834EC2FBB745D001EB36C /* ViewController.swift */,
-				80F834EE2FBB745D001EB36C /* Main.storyboard */,
+				90AA00102FCC745D001EB36C /* DashboardModel.swift */,
+				90AA02002FCC745D001EB36C /* TrackerTaxonomy.swift */,
+				90AA00302FCC745D001EB36C /* Views */,
 				80F834F12FBB745E001EB36C /* Assets.xcassets */,
+				90AA00402FCC745D001EB36C /* filterlists-meta.json */,
 				80F834F32FBB745E001EB36C /* Info.plist */,
-				80F834E22FBB745D001EB36C /* Resources */,
+				90AA00042FCC745D001EB36C /* Mane.entitlements */,
 			);
 			path = Mane;
-			sourceTree = "<group>";
-		};
-		80F834E22FBB745D001EB36C /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				80F834E32FBB745D001EB36C /* Main.html */,
-				80F834E62FBB745D001EB36C /* Icon.png */,
-				80F834E82FBB745D001EB36C /* Style.css */,
-				80F834EA2FBB745D001EB36C /* Script.js */,
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 		80F834FC2FBB745E001EB36C /* Mane Extension */ = {
@@ -139,6 +150,7 @@
 				80F835092FBB745F001EB36C /* Resources */,
 				80F834FD2FBB745E001EB36C /* SafariWebExtensionHandler.swift */,
 				80F834FF2FBB745E001EB36C /* Info.plist */,
+				90AA00052FCC745D001EB36C /* Mane Extension.entitlements */,
 			);
 			path = "Mane Extension";
 			sourceTree = "<group>";
@@ -157,6 +169,24 @@
 			name = Resources;
 			path = "Mane Extension";
 			sourceTree = SOURCE_ROOT;
+		};
+		90AA00302FCC745D001EB36C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				90AA00502FCC745D001EB36C /* Card.swift */,
+				90AA00602FCC745D001EB36C /* KPITile.swift */,
+				90AA01002FCC745D001EB36C /* EngineToggle.swift */,
+				90AA01102FCC745D001EB36C /* HeaderBar.swift */,
+				90AA01202FCC745D001EB36C /* TodayCard.swift */,
+				90AA01302FCC745D001EB36C /* AllTimeCard.swift */,
+				90AA01402FCC745D001EB36C /* DomainsCard.swift */,
+				90AA00902FCC745D001EB36C /* FilterListsCard.swift */,
+				90AA01502FCC745D001EB36C /* AdvancedSheet.swift */,
+				90AA01602FCC745D001EB36C /* DomainsSheet.swift */,
+				90AA00202FCC745D001EB36C /* DashboardView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -177,6 +207,7 @@
 			);
 			name = Mane;
 			packageProductDependencies = (
+				90AA00022FCC745D001EB36C /* ManeEngine */,
 			);
 			productName = Mane;
 			productReference = 80F834DD2FBB745D001EB36C /* Mane.app */;
@@ -228,6 +259,9 @@
 			);
 			mainGroup = 80F834D42FBB745D001EB36C;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				90AA00012FCC745D001EB36C /* XCLocalSwiftPackageReference "../../engine-swift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 80F834DE2FBB745D001EB36C /* Products */;
 			projectDirPath = "";
@@ -244,12 +278,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				80F834E72FBB745D001EB36C /* Icon.png in Resources */,
-				80F834F02FBB745D001EB36C /* Main.storyboard in Resources */,
-				80F834EB2FBB745D001EB36C /* Script.js in Resources */,
-				80F834E52FBB745D001EB36C /* Main.html in Resources */,
 				80F834F22FBB745E001EB36C /* Assets.xcassets in Resources */,
-				80F834E92FBB745D001EB36C /* Style.css in Resources */,
+				90AA00412FCC745D001EB36C /* filterlists-meta.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,8 +304,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				80F834ED2FBB745D001EB36C /* ViewController.swift in Sources */,
 				80F834E12FBB745D001EB36C /* AppDelegate.swift in Sources */,
+				90AA00112FCC745D001EB36C /* DashboardModel.swift in Sources */,
+				90AA00512FCC745D001EB36C /* Card.swift in Sources */,
+				90AA00612FCC745D001EB36C /* KPITile.swift in Sources */,
+				90AA01012FCC745D001EB36C /* EngineToggle.swift in Sources */,
+				90AA01112FCC745D001EB36C /* HeaderBar.swift in Sources */,
+				90AA01212FCC745D001EB36C /* TodayCard.swift in Sources */,
+				90AA01312FCC745D001EB36C /* AllTimeCard.swift in Sources */,
+				90AA01412FCC745D001EB36C /* DomainsCard.swift in Sources */,
+				90AA00912FCC745D001EB36C /* FilterListsCard.swift in Sources */,
+				90AA01512FCC745D001EB36C /* AdvancedSheet.swift in Sources */,
+				90AA01612FCC745D001EB36C /* DomainsSheet.swift in Sources */,
+				90AA02012FCC745D001EB36C /* TrackerTaxonomy.swift in Sources */,
+				90AA00212FCC745D001EB36C /* DashboardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,25 +338,6 @@
 			targetProxy = 80F834FA2FBB745E001EB36C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		80F834E32FBB745D001EB36C /* Main.html */ = {
-			isa = PBXVariantGroup;
-			children = (
-				80F834E42FBB745D001EB36C /* Base */,
-			);
-			name = Main.html;
-			sourceTree = "<group>";
-		};
-		80F834EE2FBB745D001EB36C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				80F834EF2FBB745D001EB36C /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		80F835002FBB745E001EB36C /* Debug */ = {
@@ -438,8 +461,10 @@
 		80F835032FBB745E001EB36C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Mane Extension/Mane Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K465H4V2A2;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
@@ -472,8 +497,10 @@
 		80F835042FBB745E001EB36C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Mane Extension/Mane Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K465H4V2A2;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
@@ -508,9 +535,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Mane/Mane.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K465H4V2A2;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
@@ -519,21 +549,23 @@
 				INFOPLIST_FILE = Mane/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Mane;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../../target/release",
+				);
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
-					"-framework",
-					WebKit,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.albassam.mane;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -549,9 +581,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Mane/Mane.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K465H4V2A2;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
@@ -560,21 +595,23 @@
 				INFOPLIST_FILE = Mane/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Mane;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../../target/release",
+				);
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
-					"-framework",
-					WebKit,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.albassam.mane;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -616,6 +653,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		90AA00012FCC745D001EB36C /* XCLocalSwiftPackageReference "../../engine-swift" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = "../../engine-swift";
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		90AA00022FCC745D001EB36C /* ManeEngine */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ManeEngine;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 80F834D52FBB745D001EB36C /* Project object */;
 }

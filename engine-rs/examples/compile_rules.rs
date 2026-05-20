@@ -17,6 +17,7 @@ use serde::Serialize;
 use std::collections::{BTreeSet, HashSet};
 use std::fs;
 use std::path::PathBuf;
+use std::time::{SystemTime, UNIX_EPOCH};
 
 #[derive(Serialize)]
 struct DnrRule {
@@ -24,6 +25,26 @@ struct DnrRule {
     priority: u32,
     action: DnrAction,
     condition: DnrCondition,
+}
+
+#[derive(Serialize)]
+struct FilterListMeta {
+    name: &'static str,
+    filename: &'static str,
+    #[serde(rename = "updatedAtUnix")]
+    updated_at_unix: u64,
+    #[serde(rename = "byteCount")]
+    byte_count: u64,
+}
+
+#[derive(Serialize)]
+struct FilterListsManifest {
+    #[serde(rename = "ruleCount")]
+    rule_count: usize,
+    skipped: usize,
+    #[serde(rename = "compiledAtUnix")]
+    compiled_at_unix: u64,
+    lists: Vec<FilterListMeta>,
 }
 
 #[derive(Serialize)]
@@ -142,12 +163,32 @@ fn main() {
         .expect("workspace root")
         .to_path_buf();
 
-    let lists = ["easylist.txt", "easyprivacy.txt"];
+    let lists = [
+        ("EasyList", "easylist.txt"),
+        ("EasyPrivacy", "easyprivacy.txt"),
+        ("Fanboy's Annoyance", "fanboy-annoyance.txt"),
+        ("Peter Lowe's List", "peter-lowe.txt"),
+    ];
     let mut filter_set = FilterSet::new(true); // debug=true is required for into_content_blocking
-    for name in &lists {
-        let path = root.join("filterlists").join(name);
+    let mut list_meta: Vec<FilterListMeta> = Vec::with_capacity(lists.len());
+    for (name, filename) in &lists {
+        let path = root.join("filterlists").join(filename);
         let text = fs::read_to_string(&path)
             .unwrap_or_else(|e| panic!("read {}: {}", path.display(), e));
+        let metadata = fs::metadata(&path)
+            .unwrap_or_else(|e| panic!("stat {}: {}", path.display(), e));
+        let updated_at_unix = metadata
+            .modified()
+            .ok()
+            .and_then(|t| t.duration_since(UNIX_EPOCH).ok())
+            .map(|d| d.as_secs())
+            .unwrap_or(0);
+        list_meta.push(FilterListMeta {
+            name,
+            filename,
+            updated_at_unix,
+            byte_count: metadata.len(),
+        });
         filter_set.add_filter_list(&text, ParseOptions::default());
     }
 
@@ -171,10 +212,27 @@ fn main() {
     let json = serde_json::to_string(&dnr_rules).expect("serialize rules.json");
     fs::write(&out, json).unwrap_or_else(|e| panic!("write {}: {}", out.display(), e));
 
+    let compiled_at_unix = SystemTime::now()
+        .duration_since(UNIX_EPOCH)
+        .map(|d| d.as_secs())
+        .unwrap_or(0);
+    let manifest = FilterListsManifest {
+        rule_count: dnr_rules.len(),
+        skipped,
+        compiled_at_unix,
+        lists: list_meta,
+    };
+    let manifest_out = root.join("safari-ext").join("filterlists-meta.json");
+    let manifest_json =
+        serde_json::to_string_pretty(&manifest).expect("serialize filterlists-meta.json");
+    fs::write(&manifest_out, manifest_json)
+        .unwrap_or_else(|e| panic!("write {}: {}", manifest_out.display(), e));
+
     eprintln!(
         "wrote {} rules ({} skipped: cookies/cosmetic/https) -> {}",
         dnr_rules.len(),
         skipped,
         out.display(),
     );
+    eprintln!("wrote filter list manifest -> {}", manifest_out.display());
 }

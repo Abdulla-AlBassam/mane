@@ -8,7 +8,7 @@ authors.workspace = true
 repository.workspace = true
 
 [lib]
-crate-type = ["rlib", "staticlib", "cdylib"]
+crate-type = ["rlib", "staticlib"]
 
 [dependencies]
 adblock = { version = "0.12.5", features = ["content-blocking"] }

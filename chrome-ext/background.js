@@ -1,21 +1,22 @@
-// Mane background service worker.
+// Mane background service worker (Chrome).
 //
-// Network blocking is performed by the bundled declarativeNetRequest ruleset
-// (manifest.json declares it, rules.json contains it). This worker only
-// observes matches, aggregates them by day/domain, and mirrors the totals to
-// the container app via native messaging so the dashboard can render them.
+// Network blocking is performed by the bundled declarativeNetRequest ruleset.
+// This worker aggregates per-day/per-domain stats and persists them, plus
+// enabled/disabled state, via chrome.storage.local. The popup is the only UI
+// surface on Chrome; there is no native messaging or external dashboard.
 
 const ext = globalThis.browser ?? globalThis.chrome;
 
 const STORAGE_KEY = "mane.stats.v1";
 const TS_KEY = "mane.lastMatchTs.v1";
+const ENGINE_KEY = "mane.engineEnabled.v1";
 const STATS_VERSION = 1;
 
 let stats = null;
 let lastSeenMatchTimestamp = 0;
 let initialised = false;
 let persistTimer = null;
-let nativePushTimer = null;
+let currentlyEnabled = true;
 
 function todayKey() {
   const d = new Date();
@@ -60,27 +61,6 @@ function schedulePersist() {
       console.error("[Mane] persist failed", err);
     }
   }, 250);
-  schedulePushToNative();
-}
-
-function schedulePushToNative() {
-  if (nativePushTimer) return;
-  nativePushTimer = setTimeout(() => {
-    nativePushTimer = null;
-    pushToNative();
-  }, 500);
-}
-
-async function pushToNative() {
-  if (!stats || !ext.runtime?.sendNativeMessage) return;
-  try {
-    await ext.runtime.sendNativeMessage("com.albassam.mane.Extension", {
-      type: "syncStats",
-      stats,
-    });
-  } catch (err) {
-    console.log("[Mane] native sync unavailable:", err?.message ?? err);
-  }
 }
 
 function recordOneMatch(url) {
@@ -107,64 +87,8 @@ function ingestMatches(matches) {
   return added;
 }
 
-async function loadStats() {
-  try {
-    const result = await ext.storage.local.get([STORAGE_KEY, TS_KEY]);
-    const stored = result[STORAGE_KEY];
-    stats = stored && stored.version === STATS_VERSION
-      ? stored
-      : { version: STATS_VERSION, days: {} };
-    lastSeenMatchTimestamp = result[TS_KEY] ?? 0;
-  } catch (err) {
-    console.error("[Mane] loadStats failed", err);
-    stats = { version: STATS_VERSION, days: {} };
-    lastSeenMatchTimestamp = 0;
-  }
-  initialised = true;
-  console.log(
-    "[Mane] stats loaded; today =",
-    stats.days[todayKey()]?.total ?? 0
-  );
-  pushToNative();
-}
-
-if (ext.declarativeNetRequest?.onRuleMatchedDebug) {
-  ext.declarativeNetRequest.onRuleMatchedDebug.addListener((info) => {
-    if (!initialised) return;
-    recordOneMatch(info.request?.url ?? "");
-    schedulePersist();
-  });
-}
-
-async function pollMatchedRules() {
-  if (!initialised) return;
-  const api = ext.declarativeNetRequest?.getMatchedRules;
-  if (!api) {
-    console.log("[Mane] getMatchedRules API not present");
-    return;
-  }
-  try {
-    const result = await ext.declarativeNetRequest.getMatchedRules({});
-    const matches = result?.rulesMatchedInfo ?? [];
-    const added = ingestMatches(matches);
-    console.log(
-      "[Mane] getMatchedRules ->",
-      matches.length,
-      "matches,",
-      added,
-      "new (today total =",
-      stats.days[todayKey()]?.total ?? 0,
-      ")"
-    );
-  } catch (err) {
-    console.log("[Mane] getMatchedRules failed:", err?.message ?? err);
-  }
-}
-
-let currentlyEnabled = true;
-
-async function applyEngineState(enabled) {
-  if (enabled === currentlyEnabled) return;
+async function applyEngineState(enabled, force = false) {
+  if (!force && enabled === currentlyEnabled) return;
   if (!ext.declarativeNetRequest?.updateEnabledRulesets) return;
   try {
     await ext.declarativeNetRequest.updateEnabledRulesets({
@@ -178,27 +102,62 @@ async function applyEngineState(enabled) {
   }
 }
 
-async function pollControl() {
-  if (!ext.runtime?.sendNativeMessage) return;
+async function setEngineEnabled(enabled) {
+  await applyEngineState(enabled);
   try {
-    const resp = await ext.runtime.sendNativeMessage(
-      "com.albassam.mane.Extension",
-      { type: "getControl" }
-    );
-    if (resp && typeof resp.enabled === "boolean") {
-      await applyEngineState(resp.enabled);
+    await ext.storage.local.set({ [ENGINE_KEY]: enabled });
+  } catch (err) {
+    console.error("[Mane] persist engine state failed:", err);
+  }
+}
+
+async function loadInitialState() {
+  try {
+    const result = await ext.storage.local.get([STORAGE_KEY, TS_KEY, ENGINE_KEY]);
+    const stored = result[STORAGE_KEY];
+    stats = stored && stored.version === STATS_VERSION
+      ? stored
+      : { version: STATS_VERSION, days: {} };
+    lastSeenMatchTimestamp = result[TS_KEY] ?? 0;
+    const storedEnabled = result[ENGINE_KEY];
+    if (typeof storedEnabled === "boolean") {
+      currentlyEnabled = storedEnabled;
     }
   } catch (err) {
-    // Native handler unavailable or no control file yet; default to enabled.
+    console.error("[Mane] load failed", err);
+    stats = { version: STATS_VERSION, days: {} };
   }
+  initialised = true;
+  await applyEngineState(currentlyEnabled, true);
+  console.log(
+    "[Mane] init complete; engine =",
+    currentlyEnabled,
+    "today =",
+    stats.days[todayKey()]?.total ?? 0
+  );
+}
+
+if (ext.declarativeNetRequest?.onRuleMatchedDebug) {
+  ext.declarativeNetRequest.onRuleMatchedDebug.addListener((info) => {
+    if (!initialised) return;
+    recordOneMatch(info.request?.url ?? "");
+    schedulePersist();
+  });
+}
+
+async function pollMatchedRules() {
+  if (!initialised) return;
+  const api = ext.declarativeNetRequest?.getMatchedRules;
+  if (!api) return;
+  try {
+    const result = await ext.declarativeNetRequest.getMatchedRules({});
+    ingestMatches(result?.rulesMatchedInfo ?? []);
+  } catch {}
 }
 
 if (ext.webNavigation?.onCompleted) {
   ext.webNavigation.onCompleted.addListener((details) => {
-    if (details.frameId === 0) {
-      pollMatchedRules();
-      pollControl();
-    }
+    if (details.frameId === 0) pollMatchedRules();
   });
 }
 
@@ -208,11 +167,8 @@ ext.runtime.onMessage.addListener((msg, _sender, send) => {
     return true;
   }
   if (msg?.type === "stats") {
-    (async () => {
-      await pollControl();
-      const today = stats.days[todayKey()] ?? { total: 0, byDomain: {} };
-      send({ blocked: today.total, ready: true, enabled: currentlyEnabled });
-    })();
+    const today = stats.days[todayKey()] ?? { total: 0 };
+    send({ blocked: today.total, ready: true, enabled: currentlyEnabled });
     return true;
   }
   if (msg?.type === "getStats") {
@@ -221,16 +177,7 @@ ext.runtime.onMessage.addListener((msg, _sender, send) => {
   }
   if (msg?.type === "setEnabled") {
     (async () => {
-      const target = !!msg.enabled;
-      await applyEngineState(target);
-      try {
-        await ext.runtime.sendNativeMessage("com.albassam.mane.Extension", {
-          type: "setControl",
-          enabled: target,
-        });
-      } catch (err) {
-        console.log("[Mane] setControl native message failed:", err?.message ?? err);
-      }
+      await setEngineEnabled(!!msg.enabled);
       const today = stats.days[todayKey()] ?? { total: 0 };
       send({ blocked: today.total, ready: true, enabled: currentlyEnabled });
     })();
@@ -239,5 +186,4 @@ ext.runtime.onMessage.addListener((msg, _sender, send) => {
   return false;
 });
 
-loadStats();
-pollControl();
+loadInitialState();

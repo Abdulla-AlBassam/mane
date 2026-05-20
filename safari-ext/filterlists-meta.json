@@ -1,0 +1,31 @@
+{
+  "ruleCount": 122026,
+  "skipped": 67968,
+  "compiledAtUnix": 1779220313,
+  "lists": [
+    {
+      "name": "EasyList",
+      "filename": "easylist.txt",
+      "updatedAtUnix": 1779220299,
+      "byteCount": 2257419
+    },
+    {
+      "name": "EasyPrivacy",
+      "filename": "easyprivacy.txt",
+      "updatedAtUnix": 1779220300,
+      "byteCount": 1486468
+    },
+    {
+      "name": "Fanboy's Annoyance",
+      "filename": "fanboy-annoyance.txt",
+      "updatedAtUnix": 1779220301,
+      "byteCount": 1655863
+    },
+    {
+      "name": "Peter Lowe's List",
+      "filename": "peter-lowe.txt",
+      "updatedAtUnix": 1779220302,
+      "byteCount": 69410
+    }
+  ]
+}
