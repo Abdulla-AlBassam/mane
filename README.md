@@ -43,7 +43,7 @@ Mane combines both: extensions for Safari and Chrome running the same Brave engi
 
 ## Status
 
-Alpha. Phase 1 (Rust engine validated against EasyList + EasyPrivacy), phase 2 (Swift FFI bridge with XCTest coverage), and phase 3 (Safari Web Extension with the engine compiled to WASM) are code-complete. The extension is built, the engine is bundled, and first-run verification in Safari is the next manual step. The Chrome extension and the SwiftUI dashboard are not yet built.
+Alpha. Safari and Chrome both block ads end-to-end against a shared 122,026-rule declarativeNetRequest set compiled from EasyList, EasyPrivacy, Fanboy's Annoyance and Peter Lowe's list. The SwiftUI Liquid Glass dashboard owns the master toggle, stats, and filter-list metadata; both popups carry a working blocking switch with the same visual language. The Safari container app is signed and sandboxed against the Apple Developer Program team; Chrome is a standalone MV3 build (`chrome-ext/`). Next phase is closing the catch-rate gaps (specific tracker domains that still slip through) and adding cosmetic filtering via the WASM engine.
 
 ## Build & validate
 
