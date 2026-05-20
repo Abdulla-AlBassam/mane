@@ -2,6 +2,7 @@
 
 A native macOS ad blocker. Wraps Brave's `adblock-rust` engine in a Liquid Glass dashboard, with bundled extensions for Safari and Chrome.
 
+VERY MUCH IN-PROD, TREAD CAREFULLY.
 ## Why this exists
 
 Existing Mac adblockers split into two camps. Browser extensions like uBlock Origin block ads well but run only inside the browser, with no system view. Native Mac apps like 1Blocker or AdGuard Mini are constrained by Apple's Content Blocker API (50,000 rule cap, no DOM access, no scriptlet injection) and can't beat extensions on sites that actively detect ad blockers.
